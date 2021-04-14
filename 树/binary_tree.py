@@ -4,6 +4,7 @@ class Node():
         self.lchild = None
         self.rchild = None
 
+
 class Tree():
     def __init__(self):
         self.root = None
@@ -66,6 +67,32 @@ class Tree():
         self.postorder(root.lchild)
         self.postorder(root.rchild)
         print(root.elem, end=' ')
+
+    def preorderTraversal(self, root):
+        # 迭代前序遍历
+        if not root: return []
+        stack, ans = [root], []
+        while stack:
+            node = stack.pop()
+            ans.append(node.val)
+            if node.right: stack.append(node.right)
+            if node.left: stack.append(node.left)
+        return ans
+
+    def postorderTraversal(self, root):
+        # 迭代后序遍历
+        if not root: return []
+        res, stack = [], [[root, False]]
+        while stack:
+            node, needAdd = stack.pop()
+            if needAdd:
+                res.append(node.val)
+            else:
+                stack.append([node, True])
+                if node.right: stack.append([node.right, False])
+                if node.left: stack.append([node.left, False])
+        return res
+
 
 if __name__ == '__main__':
     tree = Tree()
