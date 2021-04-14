@@ -6,4 +6,10 @@
 
 class Solution:
     def isMatch(self, s: str, p: str) -> bool:
-        dp = [[False] ]
+        dp = [[False] * len(p) for _ in s]
+        dp[0][0] = True
+        for i in range(len(s)):
+            for j in range(len(p)):
+                if j == 0 or i ==
+                if s[i] == p[j]:
+                    dp[i][]
