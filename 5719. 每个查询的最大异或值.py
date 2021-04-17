@@ -6,18 +6,15 @@ from leetcode import *
 
 class Solution:
     def getMaximumXor(self, nums: List[int], maximumBit: int) -> List[int]:
-        ans, pre, maximum, xor = [], None, pow(2, maximumBit), int('0b' + '1' * maximumBit, 2)
+        ans, pre, xor = [], None, int('0b' + '1' * maximumBit, 2)
         for num in nums:
             if pre == None:
                 pre = num
             else:
                 pre = pre ^ num
             res = pre ^ xor
-            print(pre, bin(pre), res, bin(res))
-            if res >= maximum:
-                res = res << 1
-            ans = [res] + ans
-        return ans
+            ans.append(res)
+        return ans[::-1]
 
 
 if __name__ == '__main__':
