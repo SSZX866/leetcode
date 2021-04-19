@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2021/4/18 10:36
-# @File    : 5736. 单线程 CPU.py
+# @File    : 1834. 单线程 CPU.py
 from leetcode import *
 import heapq
 
