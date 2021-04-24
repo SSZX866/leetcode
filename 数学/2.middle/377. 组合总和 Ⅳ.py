@@ -56,15 +56,16 @@ class Solution:
 
 
 # 根据记忆化搜索 写dp
-class Solution:
-    def combinationSum4(self, nums: List[int], target: int) -> int:
+class Solution(object):
+    def combinationSum4(self, nums, target):
         dp = [0] * (target + 1)
         dp[0] = 1
-        for i in range(target):
+        for i in range(target + 1):
             for num in nums:
-                if i + num <= target:
-                    dp[i + num] += dp[i]
+                if i >= num:
+                    dp[i] += dp[i - num]
         return dp[target]
+
 
 
 if __name__ == '__main__':
