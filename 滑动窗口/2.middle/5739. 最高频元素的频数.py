@@ -20,6 +20,21 @@ class Solution:
         return ans
 
 
+# 最大数乘以窗口大小 - 窗口中所有数的和 <= k
+# max * size - sum <= k ---> max * size <= k + sum
+class Solution:
+    def maxFrequency(self, nums: List[int], k: int) -> int:
+        nums.sort()
+        i = 0
+        for j in range(len(nums)):
+            k += nums[j]
+            if nums[j] * (j - i + 1) > k:
+                k -= nums[i]
+                i += 1
+        # 因为已经排序，所以最后记录的情况必是最大的，无需使用max函数
+        return j - i + 1
+
+
 if __name__ == '__main__':
     nums = [1, 2, 4]
     k = 5
