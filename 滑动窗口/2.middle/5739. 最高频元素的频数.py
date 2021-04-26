@@ -33,6 +33,7 @@ class Solution:
                 i += 1
         # 因为已经排序，所以最后记录的情况必是最大的，无需使用max函数
         return j - i + 1
+    
 
 
 if __name__ == '__main__':
