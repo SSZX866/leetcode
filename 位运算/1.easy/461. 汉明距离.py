@@ -8,17 +8,21 @@ class Solution:
     def hammingDistance(self, x: int, y: int) -> int:
         return bin(x ^ y).count('1')
 
-
-class Solution:
-    def hammingDistance(self, x: int, y: int) -> int:
-        a = x ^ y
-        ans = 0
-        for i in range(32):
-            if a & 1 == 1:
-                ans += 1
-            a = a >> 1
-        return ans
-
+class Solution(object):
+    def hammingDistance(self, x, y):
+        """
+        :type x: int
+        :type y: int
+        :rtype: int
+        """
+        xor = x ^ y
+        distance = 0
+        while xor:
+            # mask out the rest bits
+            if xor & 1:
+                distance += 1
+            xor = xor >> 1
+        return distance
 
 if __name__ == '__main__':
     x = 1
