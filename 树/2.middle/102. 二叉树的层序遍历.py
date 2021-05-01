@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2021/4/13 20:30
 # @File    : 102. 二叉树的层序遍历.py
+from collections import deque
 from typing import List
 
 
@@ -34,7 +35,7 @@ def buildTreeWithValue(root):
             i += 1
     return tree
 
-
+# 分层
 class Solution:
     def levelOrder(self, root: TreeNode) -> List[List[int]]:
         if not root: return []
@@ -50,6 +51,23 @@ class Solution:
                 if cur.right: next_layer.append(cur.right)
             ans.append(cur_val)
             cur_layer = next_layer
+        return ans
+
+# 队列
+class Solution:
+    def levelOrder(self, root: TreeNode) -> List[List[int]]:
+        if not root: return []
+        queue, ans = deque([root]), []
+        while queue:
+            cnt = len(queue)
+            tmpList = []
+            while cnt:
+                tmp = deque.popleft(queue)
+                tmpList.append(tmp.val)
+                if tmp.left: deque.append(queue, tmp.left)
+                if tmp.right: deque.append(queue, tmp.right)
+                cnt -= 1
+            ans.append(tmpList)
         return ans
 
 
