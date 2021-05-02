@@ -32,6 +32,8 @@ class Solution:
                     ans = max(tmp, ans, key=len)
                 i = 0
                 tmp = ""
+                if p[i] == word[j]:
+                    tmp += word[j]
             elif p[i + 1] == word[j] and tmp:
                 i += 1
                 tmp += word[j]
