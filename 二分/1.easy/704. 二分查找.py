@@ -6,7 +6,7 @@ from leetcode import *
 
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
-        lo, hi = 0, len(nums) - 1
+        lo, hi = 0, len(nums)
         while lo < hi:
             mid = lo + (hi - lo) // 2
             if nums[mid] < target:
@@ -15,7 +15,7 @@ class Solution:
                 hi = mid
             else:
                 return mid
-        return lo if target == nums[lo] else - 1
+        return - 1
 
 
 if __name__ == '__main__':
