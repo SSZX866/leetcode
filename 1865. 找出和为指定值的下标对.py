@@ -54,3 +54,79 @@ class FindSumPairs:
             elif self.nums1[lo][0] + self.nums2[hi][0] > tot:
                 hi -= 1
         return ans
+
+
+# 超时
+class FindSumPairs:
+
+    def __init__(self, nums1: List[int], nums2: List[int]):
+        self.nums1 = nums1
+        self.nums2 = nums2
+
+    def add(self, index: int, val: int) -> None:
+        self.nums2[index] += val
+
+    def count(self, tot: int) -> int:
+        ans, dic = 0, dict()
+        for num in self.nums1:
+            if tot - num not in dic:
+                dic[tot - num] = 1
+            else:
+                dic[tot - num] += 1
+        for num in self.nums2:
+            if num in dic:
+                ans += dic[num]
+        return ans
+
+# 因为nums2范围大，所以根据nums2建立hash表
+class FindSumPairs:
+
+    def __init__(self, nums1: List[int], nums2: List[int]):
+        self.nums1 = nums1
+        self.nums2 = nums2
+        self.dic = defaultdict(int)
+        for num in self.nums2:
+            self.dic[num] += 1
+
+    def add(self, index: int, val: int) -> None:
+        self.dic[self.nums2[index]] -= 1
+        self.nums2[index] += val
+        self.dic[self.nums2[index]] += 1
+
+    def count(self, tot: int) -> int:
+        ans = 0
+        for num in self.nums1:
+            ans += self.dic[tot - num]
+        return ans
+
+# 进一步优化
+class FindSumPairs:
+
+    def __init__(self, nums1: List[int], nums2: List[int]):
+        # 初始化两个动态数组
+        self.nums1 = nums1
+        self.nums2 = nums2
+        m, n = len(nums1), len(nums2)
+        # 初始化数组出现元素的频率
+        self.freq1 = Counter(self.nums1)
+        self.freq2 = Counter(self.nums2)
+        # 数组1中的元素不变，对其排序后，提前退出降低时间复杂度
+        self.key1 = sorted(list(self.freq1.keys()))
+
+
+    def add(self, index: int, val: int) -> None:
+        # 数组2对元素出现频率进行更新
+        self.freq2[self.nums2[index]] -= 1
+        self.nums2[index] += val
+        self.freq2[self.nums2[index]] += 1
+
+
+    def count(self, tot: int) -> int:
+        res = 0
+        # 在哈希表中查找两数和
+        for k in self.key1:
+            if (tot - k) in self.freq2:
+                res += self.freq1[k] * self.freq2[tot - k]
+            if k >= tot:
+                break
+        return res
