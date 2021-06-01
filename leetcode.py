@@ -81,3 +81,5 @@ def printChainToValue(root):
 
 
 null = None
+true = True
+false = False

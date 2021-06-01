@@ -6,7 +6,7 @@ from leetcode import *
 
 class Solution:
     def minSpeedOnTime(self, dist: List[int], hour: float) -> int:
-        if len(dist) - 1 > hour: return -1
+        if len(dist) - 1 >= hour: return -1
 
         def check(target):
             cur_time = 0
