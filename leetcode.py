@@ -4,7 +4,7 @@
 from typing import List
 import heapq, math, itertools, functools, bisect
 from collections import *
-
+from functools import lru_cache
 
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
