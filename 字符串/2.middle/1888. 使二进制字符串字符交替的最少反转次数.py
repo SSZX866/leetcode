@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2021/6/6 10:58
-# @File    : 5778. 使二进制字符串字符交替的最少反转次数.py
+# @File    : 1888. 使二进制字符串字符交替的最少反转次数.py
 from leetcode import *
 
 
