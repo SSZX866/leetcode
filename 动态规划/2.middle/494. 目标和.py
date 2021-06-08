@@ -82,6 +82,7 @@ class Solution:
 # 集合运算           sum(P) - sum(N) = target
 # sum(P) + sum(N) + sum(P) - sum(N) = target + sum(P) + sum(N)
 #                        2 * sum(P) = target + sum(nums)
+# 01背包
 class Solution:
     def findTargetSumWays(self, nums: List[int], target: int) -> int:
         # 正数和为x，负数和绝对值为y   x + y = sum(nums)  x - y = target   x = (sum+target)/2

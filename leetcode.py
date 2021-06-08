@@ -1,10 +1,15 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2021/4/13 11:15
 # @File    : model.py
+
+# 力扣可以支持到 1e7 的算法复杂度。也就是说数据范围到 50000 的基本是 O(n),到 20000 的是 O(nlogn)
+# 到 1000 的是 O(n^2),到 100 的是 O(n^3),到 30 的是 O(n^4),到 20是 O(2^n)
+
 from typing import List
 import heapq, math, itertools, functools, bisect
 from collections import *
 from functools import lru_cache
+
 
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
