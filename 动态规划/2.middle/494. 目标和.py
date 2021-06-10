@@ -114,6 +114,45 @@ class Solution:
         return dfs(0, 0)
 
 
+# 01背包
+# dp[i][s] 在前i个元素子集中添加符号，所得值恰好为s时有多少种不同的方法
+# 错误 j不能取负数，因此要加个偏移，如下解法
+# s可能是负数，而s作为数组的index不能为负。解决方法就是给s加上一个SUM的偏移，将[-SUM,SUM]的区间平移至[0,SUM*2]作为DP数组的第二个维度的index
+class Solution:
+    def findTargetSumWays(self, nums: List[int], target: int) -> int:
+        total = sum(nums)
+        dp = [[0] * (total * 2 + 1) for _ in range(len(nums))]
+        for i in range(len(nums)):
+            for j in range(-total - 1, total + 1):
+                if i == 0:
+                    dp[0][j] = -9999999 if j != 0 else 1
+                else:
+                    dp[i][j] = dp[i - 1][j - nums[i]] + dp[i - 1][j + nums[i]]
+        return dp[-1][target]
+
+
+# 增加偏移
+class Solution:
+    def findTargetSumWays(self, nums, S):
+        total = sum(nums)
+        if (abs(S) > total): return 0
+
+        N = len(nums)
+        dp = [[0 for _ in range(2 * total + 1)] for _ in range(N)]
+        dp[0][nums[0] + total] += 1
+        dp[0][-nums[0] + total] += 1
+
+        for i in range(1, N):
+            for s in range(-total, total + 1):
+                s1 = s + nums[i]
+                s2 = s - nums[i]
+
+                if (abs(s1) <= total): dp[i][s + total] += dp[i - 1][s1 + total]
+                if (abs(s2) <= total): dp[i][s + total] += dp[i - 1][s2 + total]
+
+        return dp[N - 1][S + total]
+
+
 if __name__ == '__main__':
     nums = [1, 1, 1, 1, 1]
     target = 3
