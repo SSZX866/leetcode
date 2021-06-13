@@ -18,3 +18,10 @@ def bagValueProblem(value, wight, capacity):
             if i == 0: dp[i][c] = -99999999
             dp[i][c] = max(dp[i - 1][c], dp[i - 1][c - wight[i]] + value[c])
     return max(dp[-1])
+
+
+if __name__ == '__main__':
+    value = [2, 4, 4, 5]
+    wight = [1, 2, 3, 4]
+    capacity = 5
+    print(bagValueProblem(value, wight, capacity))
