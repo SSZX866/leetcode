@@ -71,7 +71,16 @@ class Solution:
         if ans == 25 and grid[0][0] == 5: ans = 16
         return ans
 
-
+class Solution:
+    def largestMagicSquare(self, grid: List[List[int]]) -> int:
+        m,n=len(grid),len(grid[0])
+        def check(starti,startj,level):
+            for i in range(starti,)
+        for level in range(len(grid)-1,-1,-1):
+            for i in range(m-level+1):
+                for j in range(n-level+1):
+                    check(i,j,level)
+            check(level,)
 if __name__ == '__main__':
     grid = [[7, 1, 4, 5, 6], [2, 5, 1, 6, 4], [1, 5, 4, 3, 2], [1, 2, 7, 3, 4]]
     grid = [
