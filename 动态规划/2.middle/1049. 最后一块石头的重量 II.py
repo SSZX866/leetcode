@@ -46,6 +46,25 @@ class Solution:
         return ans
 
 
+# dp[i][s] = dp[i-1][s-j] or dp[i-1][s+j]
+# 偏移 total
+# 该题类似494问题
+class Solution:
+    def lastStoneWeightII(self, stones: List[int]) -> int:
+        total = sum(stones)
+        dp = [[False] * (total * 2 + 1) for _ in stones]
+        dp[0][total + stones[0]] = True
+        dp[0][total - stones[0]] = True
+        for i in range(1, len(stones)):
+            for j in range(-total, total + 1):
+                s1 = total + j - stones[i]
+                s2 = total + j + stones[i]
+                if abs(s1) <= 2 * total: dp[i][j + total] = dp[i][j + total] or dp[i - 1][s1]
+                if abs(s2) <= 2 * total: dp[i][j + total] = dp[i][j + total] or dp[i - 1][s2]
+        for i in range(total, len(dp[-1])):
+            if dp[-1][i]: return i - total
+
+
 if __name__ == '__main__':
     stones = [2, 7, 4, 1, 8, 1]
     print(Solution().lastStoneWeightII(stones))

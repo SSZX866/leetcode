@@ -150,8 +150,8 @@ class Solution:
                 s1 = s + nums[i]
                 s2 = s - nums[i]
 
-                if (abs(s1) <= total): dp[i][s + total] += dp[i - 1][s1 + total]
-                if (abs(s2) <= total): dp[i][s + total] += dp[i - 1][s2 + total]
+                if abs(s1) <= total: dp[i][s + total] += dp[i - 1][s1 + total]
+                if abs(s2) <= total: dp[i][s + total] += dp[i - 1][s2 + total]
 
         return dp[N - 1][target + total]
 
