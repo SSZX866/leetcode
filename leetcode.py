@@ -9,6 +9,7 @@ from typing import List
 import heapq, math, itertools, functools, bisect
 from collections import *
 from functools import lru_cache
+import copy
 
 
 class TreeNode:
@@ -88,3 +89,5 @@ def printChainToValue(root):
 null = None
 true = True
 false = False
+Yes = True
+No = False
