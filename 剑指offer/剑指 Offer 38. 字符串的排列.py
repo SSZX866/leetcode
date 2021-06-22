@@ -53,7 +53,7 @@ class Solution:
                 return
             dic = set()
             for i in range(len(s)):
-                if s[i] in dic:continue
+                if s[i] in dic: continue
                 dic.add(s[i])
                 path.append(s[i])
                 new_s = s[0:i] + s[i + 1:]
@@ -63,6 +63,29 @@ class Solution:
         res = []
         trackback([], res, s)
         return res
+
+
+class Solution:
+    def permutation(self, s: str) -> List[str]:
+        N = len(s)
+        ans = set()
+
+        def backtrack(path, stack):
+            if len(path) == N:
+                ans.add(''.join(path))
+                return
+
+            for i in range(N):
+                if i in stack:
+                    continue
+                stack.append(i)
+                path.append(s[i])
+                backtrack(path, stack)
+                stack.pop()
+                path.pop()
+
+        backtrack([], [])
+        return list(ans)
 
 
 if __name__ == '__main__':

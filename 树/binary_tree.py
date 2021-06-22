@@ -1,17 +1,17 @@
-class Node():
-    def __init__(self, item):
-        self.elem = item
-        self.lchild = None
-        self.rchild = None
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 
 
 class Tree():
     def __init__(self):
         self.root = None
 
-    def add(self, item):
+    def add(self, val):
         # 广度遍历（层次遍历），队列
-        node = Node(item)
+        node = TreeNode(val)
         queue = [self.root]
         if not self.root:
             self.root = node
@@ -19,15 +19,15 @@ class Tree():
         while True:
             # 弹出队列的第一个元素
             cur_node = queue.pop(0)
-            if cur_node.lchild:
-                queue.append(cur_node.lchild)
+            if cur_node.left:
+                queue.append(cur_node.left)
             else:
-                cur_node.lchild = node
+                cur_node.left = node
                 break
-            if cur_node.rchild:
-                queue.append(cur_node.rchild)
+            if cur_node.right:
+                queue.append(cur_node.right)
             else:
-                cur_node.rchild = node
+                cur_node.right = node
                 break
         return
 
@@ -38,35 +38,35 @@ class Tree():
             return
         while queue:
             cur_node = queue.pop(0)
-            print(cur_node.elem, end=' ')
-            if cur_node.lchild:
-                queue.append(cur_node.lchild)
-            if cur_node.rchild:
-                queue.append(cur_node.rchild)
+            print(cur_node.val, end=' ')
+            if cur_node.left:
+                queue.append(cur_node.left)
+            if cur_node.right:
+                queue.append(cur_node.right)
 
     def preorder(self, root):
         # 先序遍历
         if not root:
             return
-        print(root.elem, end=' ')
-        self.preorder(root.lchild)
-        self.preorder(root.rchild)
+        print(root.val, end=' ')
+        self.preorder(root.left)
+        self.preorder(root.right)
 
     def inorder(self, root):
         # 中序遍历
         if not root:
             return
-        self.inorder(root.lchild)
-        print(root.elem, end=' ')
-        self.inorder(root.rchild)
+        self.inorder(root.left)
+        print(root.val, end=' ')
+        self.inorder(root.right)
 
     def postorder(self, root):
         # 后序遍历
         if not root:
             return
-        self.postorder(root.lchild)
-        self.postorder(root.rchild)
-        print(root.elem, end=' ')
+        self.postorder(root.left)
+        self.postorder(root.right)
+        print(root.val, end=' ')
 
     def preorderTraversal(self, root):
         # 迭代前序遍历
@@ -78,6 +78,20 @@ class Tree():
             if node.right: stack.append(node.right)
             if node.left: stack.append(node.left)
         return ans
+
+    def inorderTraversal(self, root):
+        # 迭代中遍历
+        if not root: return []
+        res, stack = [], [[root, False]]
+        while stack:
+            node, needAdd = stack.pop()
+            if needAdd:
+                res.append(node.val)
+            else:
+                if node.right: stack.append([node.right, False])
+                stack.append([node, True])
+                if node.left: stack.append([node.left, False])
+        return res
 
     def postorderTraversal(self, root):
         # 迭代后序遍历
@@ -98,11 +112,23 @@ if __name__ == '__main__':
     tree = Tree()
     for i in range(10):
         tree.add(i)
-    print(' ')
     tree.breadth_travel()
-    print(' ')
+    print(' <=breadth travel')
     tree.preorder(tree.root)
-    print(' ')
+    print(' <=preorder')
     tree.inorder(tree.root)
-    print(' ')
+    print(' <=inorder')
     tree.postorder(tree.root)
+    print(' <=postorder')
+    preorderTraversal = tree.preorderTraversal(tree.root)
+    for val in preorderTraversal:
+        print(val, end=' ')
+    print(' <=preorderTraversal')
+    inorderTraversal = tree.inorderTraversal(tree.root)
+    for val in inorderTraversal:
+        print(val, end=' ')
+    print(' <=inorderTraversal')
+    postorderTraversal = tree.postorderTraversal(tree.root)
+    for val in postorderTraversal:
+        print(val, end=' ')
+    print(' <=postorderTraversal')
