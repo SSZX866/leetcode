@@ -10,6 +10,7 @@ import heapq, math, itertools, functools, bisect
 from collections import *
 from functools import lru_cache
 import copy
+import json
 
 
 class TreeNode:
@@ -26,7 +27,7 @@ def buildTreeWithValue(root):
     i = 1
     while i < len(root):
         node = queue.pop(0)
-        if root[i] == None:
+        if root[i] is None:
             i += 1
             if i < len(root) and root[i] != None:
                 node.right = TreeNode(root[i])
