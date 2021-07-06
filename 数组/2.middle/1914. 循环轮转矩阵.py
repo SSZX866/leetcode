@@ -8,7 +8,6 @@ class Solution:
     def rotateGrid(self, grid: List[List[int]], k: int) -> List[List[int]]:
         m, n = len(grid), len(grid[1])
 
-
         def generateList(matrix):
             res = []
             i = 0
@@ -76,6 +75,31 @@ class Solution:
                 tmp2[(i - k) % N] = each[i]
             Matrix.append(tmp2)
         return generateMatrix(Matrix[::-1])
+
+
+class Solution:
+    def rotateGrid(self, grid: List[List[int]], k: int) -> List[List[int]]:
+        m, n = len(grid), len(grid[0])
+        res = [[0] * n for _ in range(m)]
+        for i in range(min(m, n) // 2):
+            x, y = i, i
+            index = []
+            for a in range(i, n - i - 1):
+                index.append([x, y])
+                y += 1
+            for b in range(i, m - i - 1):
+                index.append([x, y])
+                x += 1
+            for c in range(i, n - i - 1):
+                index.append([x, y])
+                y -= 1
+            for d in range(i, m - i - 1):
+                index.append([x, y])
+                x -= 1
+            for idx in range(len(index)):
+                delta = (k + idx) % len(index)
+                res[index[idx][0]][index[idx][1]] = grid[index[delta][0]][index[delta][1]]
+        return res
 
 
 if __name__ == '__main__':
