@@ -8,6 +8,7 @@
 from typing import List
 import heapq, math, itertools, functools, bisect
 from collections import *
+from itertools import *
 from functools import lru_cache
 import copy
 import json
