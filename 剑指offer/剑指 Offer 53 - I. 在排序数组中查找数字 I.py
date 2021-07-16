@@ -35,5 +35,5 @@ class Solution:
 
         left = search(0, len(nums), True)
         if left < len(nums) and nums[left] == target:
-            return search(0, len(nums), False) - 1 - left
+            return search(0, len(nums), False) - left
         return 0
