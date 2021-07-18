@@ -23,7 +23,20 @@ class Solution:
         return max(dp)
 
 
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        dp = [0]
+        for num in nums:
+            dp.append(dp[-1] + num)
+        ans = nums[0]
+        for i in range(len(nums)):
+            for j in range(i + 1, len(nums) + 1):
+                ans = max(ans, dp[j] - dp[i])
+        return ans
+
+
 if __name__ == '__main__':
     nums = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
     nums = [-1]
+    # nums = [1,2]
     print(Solution().maxSubArray(nums))
