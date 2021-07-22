@@ -21,6 +21,18 @@ class TreeNode:
         self.left = left
         self.right = right
 
+    def __repr__(self):
+        msg = 'Val:%s' % str(self.val)
+        if self.left:
+            msg += ', left Val:%s' % str(self.left.val)
+        else:
+            msg += ', left node does not exist'
+        if self.right:
+            msg += ', right Val:%s' % str(self.right.val)
+        else:
+            msg += ', right node does not exist'
+        return msg
+
 
 def buildTreeWithValue(root):
     if not root: return root
@@ -65,6 +77,12 @@ class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
+
+    def __repr__(self):
+        if self.next is None:
+            return 'val:' + str(self.val) + ', next Node does not exist'
+        else:
+            return 'Val:' + str(self.val) + ', next Val:' + str(self.next.val)
 
 
 def buildChainWithValue(head):
