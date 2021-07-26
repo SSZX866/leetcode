@@ -3,7 +3,7 @@
 # @File    : 5805. 最小未被占据椅子的编号
 from leetcode import *
 
-
+# 排序+优先队列
 class Solution:
     def smallestChair(self, times: List[List[int]], targetFriend: int) -> int:
         targetTime = times[targetFriend][0]

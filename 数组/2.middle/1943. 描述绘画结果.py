@@ -3,7 +3,7 @@
 # @File    : 5806. 描述绘画结果
 from leetcode import *
 
-
+# 差分数组
 class Solution:
     def splitPainting(self, segments: List[List[int]]) -> List[List[int]]:
         indices = set()

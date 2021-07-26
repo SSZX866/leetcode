@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2021/7/18 11:00
-# @File    : 5815. 扣分后的最大得分.py
+# @File    : 1937. 扣分后的最大得分.py
 from leetcode import *
 
 
