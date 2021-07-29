@@ -12,12 +12,12 @@ class Solution:
         dp[0] = nums[0]
         if n == 1: return dp[0]
         dp[1] = max(nums[:2])
-        #选第一个不选最后一个
-        for i in range(2, n-1):
+        # 选第一个不选最后一个
+        for i in range(2, n - 1):
             dp[i] = max(dp[i - 1], dp[i - 2] + nums[i])
         ans = dp[-2]
 
-        #不选第一个选最后一个
+        # 不选第一个选最后一个
         nums = nums[1:]
         dp[0] = nums[0]
         if n == 1: return dp[0]
@@ -27,9 +27,31 @@ class Solution:
         ans = max(ans, dp[-2])
         return ans
 
+
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        if len(nums) == 1: return nums[0]
+        dp = [[0] * 2 for _ in nums]
+
+        dp[0][1] = nums[0]
+        for i in range(1, len(nums) - 1):
+            dp[i][0] = max(dp[i - 1][1], dp[i - 1][0])
+            dp[i][1] = dp[i - 1][0] + nums[i]
+        ans = max(dp[-2])
+
+        dp[1][1] = nums[1]
+        dp[1][0] = 0
+        for i in range(2, len(nums)):
+            dp[i][0] = max(dp[i - 1][1], dp[i - 1][0])
+            dp[i][1] = dp[i - 1][0] + nums[i]
+
+        ans = max(ans, max(dp[-1]))
+        return ans
+
+
 if __name__ == '__main__':
     nums = [2, 3, 2]
     nums = [1, 2, 3, 1]
     nums = [0]
-    nums = [1,3,5,7,8,1,4,5]
+    nums = [1, 3, 5, 7, 8, 1, 4, 5]
     print(Solution().rob(nums))

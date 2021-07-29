@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2021/05/05 12:56
 # @File    : 740. 删除并获得点数.py
-from collections import Counter
-
 from leetcode import *
 
 
@@ -39,6 +37,19 @@ class Solution:
         for i in range(2, max(nums) + 1):
             dp[i] = max(dp[i - 1], dp[i - 2] + i * tmp[i])
         return dp[-1]
+
+#  转换为打家劫舍问题
+class Solution:
+    def deleteAndEarn(self, nums: List[int]) -> int:
+        tmp = [0] * (max(nums) + 1)
+        for num in nums:
+            tmp[num] += num
+        dp = [[0] * 2 for _ in tmp]
+        dp[0][1] = tmp[0]
+        for i in range(1, len(tmp)):
+            dp[i][0] = max(dp[i - 1][0], dp[i - 1][1])
+            dp[i][1] = dp[i - 1][0] + tmp[i]
+        return max(dp[-1])
 
 
 if __name__ == '__main__':
