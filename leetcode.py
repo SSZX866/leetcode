@@ -9,7 +9,7 @@ from typing import List
 import heapq, math, itertools, functools, bisect
 from collections import *
 from itertools import *
-from functools import lru_cache
+from functools import *
 import copy
 import json
 import time
