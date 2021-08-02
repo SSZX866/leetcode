@@ -38,6 +38,8 @@ class Solution:
             cur.next = p
             cur = cur.next
         return root
+
+
 # 我们会确保「进入外层循环时 head 不会与上一节点相同」，因此插入时机：
 #
 # head 已经没有下一个节点，head 可以被插入
@@ -56,6 +58,19 @@ class Solution:
             head = head.next
         tail.next = None
         return dummy.next
+
+
+class Solution:
+    def deleteDuplicates(self, head: ListNode) -> ListNode:
+        cur = head
+        while cur:
+            tmp = cur
+            while cur.next and cur.next.val == cur.val:
+                cur = cur.next
+            cur = cur.next
+            tmp.next = cur
+        return head
+
 
 if __name__ == '__main__':
     head = [1, 1, 1]
