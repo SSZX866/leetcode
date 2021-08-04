@@ -1,3 +1,6 @@
+from leetcode import *
+
+
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
@@ -106,6 +109,18 @@ class Tree():
                 if node.right: stack.append([node.right, False])
                 if node.left: stack.append([node.left, False])
         return res
+
+    def postorderTraversal1(self, root: TreeNode) -> List[int]:
+        # 迭代后序遍历 反转答案
+        if not root: return []
+        stack = [root]
+        ans = []
+        while stack:
+            node = stack.pop()
+            ans.append(node.val)
+            if node.left: stack.append(node.left)
+            if node.right: stack.append(node.right)
+        return ans[::-1]
 
 
 if __name__ == '__main__':
