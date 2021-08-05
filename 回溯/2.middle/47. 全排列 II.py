@@ -36,6 +36,42 @@ class Solution:
         return ans
 
 
+# 过程中去重
+class Solution:
+    def permuteUnique(self, nums: List[int]) -> List[List[int]]:
+        ans = []
+
+        def backtrack(path, ns):
+            if not ns and path[:] not in ans:
+                ans.append(path[:])
+            for i in range(len(ns)):
+                path.append(ns[i])
+                backtrack(path, ns[:i] + ns[i + 1:])
+                path.pop()
+
+        backtrack([], nums)
+        return ans
+
+
+# 最后再去重
+class Solution:
+    def permuteUnique(self, nums: List[int]) -> List[List[int]]:
+        ans = []
+
+        def backtrack(path, ns):
+            if not ns:
+                ans.append(tuple(path[:]))
+            for i in range(len(ns)):
+                path.append(ns[i])
+                backtrack(path, ns[:i] + ns[i + 1:])
+                path.pop()
+
+        backtrack([], nums)
+        return list(map(list, set(ans)))
+
+
 if __name__ == '__main__':
     nums = [1, 1, 2]
+    s = 'a'
+    s.isdigit()
     print(Solution().permuteUnique(nums))

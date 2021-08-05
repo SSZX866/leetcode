@@ -35,5 +35,20 @@ class Solution:
         return ans
 
 
+# dp 用还没乘过 2 的最小丑数乘以 2；用还没乘过 3 的最小丑数乘以 3；用还没乘过 5 的最小丑数乘以 5。然后在得到的数字中取最小，就是新的丑数。
+#  index2, index3, index5 分别表示丑数集合中还没乘过 2，3，5 的丑数位置
+class Solution:
+    def nthUglyNumber(self, n: int) -> int:
+        dp = [0] * n
+        index1, index2, index3 = 0, 0, 0
+        dp[0] = 1
+        for i in range(1, n):
+            dp[i] = min(dp[index1] * 2, dp[index2] * 3, dp[index3] * 5)
+            if dp[i] == dp[index1] * 2: index1 += 1
+            if dp[i] == dp[index2] * 3: index2 += 1
+            if dp[i] == dp[index3] * 5: index3 += 1
+        return dp[-1]
+
+
 if __name__ == '__main__':
     print(Solution().nthUglyNumber(4))
