@@ -4,6 +4,7 @@ class TreeNode:
         self.left = left
         self.right = right
 
+
 class Solution:
     def invertTree(self, root: TreeNode) -> TreeNode:
         if not root: return root
@@ -15,4 +16,11 @@ class Solution:
                 queue.append(node.left)
             if node.right:
                 queue.append(node.right)
+        return root
+
+
+class Solution:
+    def invertTree(self, root: TreeNode) -> TreeNode:
+        if not root: return root
+        root.left, root.right = self.invertTree(root.right), self.invertTree(root.left)
         return root

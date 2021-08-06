@@ -4,6 +4,7 @@ class TreeNode:
         self.left = left
         self.right = right
 
+
 # dfs 回溯解法
 class Solution:
     def hasPathSum(self, root: TreeNode, targetSum: int) -> bool:
@@ -47,3 +48,10 @@ class Solution:
             return ans
 
         return calc(root, ans, val)
+
+
+class Solution:
+    def hasPathSum(self, root: TreeNode, targetSum: int) -> bool:
+        if not root: return False
+        if not root.left and not root.right: return not root.val - targetSum
+        return self.hasPathSum(root.left, targetSum - root.val) or self.hasPathSum(root.right, targetSum - root.val)
