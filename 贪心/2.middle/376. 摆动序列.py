@@ -85,6 +85,19 @@ class Solution:
         return max(p, q)
 
 
+class Solution:
+    def wiggleMaxLength(self, nums: List[int]) -> int:
+        if len(nums) == 1: return 1
+        dp = [[0] * 2 for _ in nums]
+        dp[0] = [1, 1]
+        ans = 0
+        for i in range(1, len(nums)):
+            dp[i][0] = dp[i - 1][1] + 1 if nums[i] > nums[i - 1] else dp[i - 1][0]
+            dp[i][1] = dp[i - 1][0] + 1 if nums[i] < nums[i - 1] else dp[i - 1][1]
+            ans = max(ans, dp[i][0], dp[i][1])
+        return ans
+
+
 if __name__ == '__main__':
     nums = [1, 7, 4, 9, 2, 5]
     print(Solution().wiggleMaxLength(nums))
