@@ -20,6 +20,22 @@ class Solution:
         return nums[i] if i < len(nums) else nums[0]
 
 
+class Solution:
+    def findMin(self, nums: List[int]) -> int:
+        if nums[0] <= nums[-1]: return nums[0]
+        i, j = 0, len(nums)
+        ans = 5000
+        while i < j:
+            mid = i + (j - i) // 2
+            ans = min(ans, nums[mid])
+            #  左边有序
+            if nums[mid] > nums[0]:
+                i = mid + 1
+            else:
+                j = mid
+        return min(nums[i], ans)
+
+
 if __name__ == '__main__':
     nums = [3, 1, 3, 3]
     print(Solution().findMin(nums))

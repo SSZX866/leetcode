@@ -34,7 +34,30 @@ class Solution:
                 return True
         return False
 
-
+#  两次二分
+class Solution:
+    def findNumberIn2DArray(self, matrix: List[List[int]], target: int) -> bool:
+        lo, hi = 0, len(matrix)
+        while lo < hi:
+            mid = lo + (hi - lo) // 2
+            if matrix[mid][-1] < target:
+                lo = mid + 1
+            elif matrix[mid][-1] == target:
+                return True
+            else:
+                hi = mid
+        if lo == len(matrix): return False
+        idx = lo
+        lo, hi = 0, len(matrix[0])
+        while lo < hi:
+            mid = lo + (hi - lo) // 2
+            if matrix[idx][mid] < target:
+                lo = mid + 1
+            elif matrix[idx][mid] == target:
+                return True
+            else:
+                hi = mid
+        return lo < len(matrix[0]) and matrix[idx][lo] == target
 if __name__ == '__main__':
     matrix = [
         [1, 4, 7, 11, 15],
