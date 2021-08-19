@@ -22,6 +22,7 @@ class Solution:
                     dic[key] = [nums[i], nums[j]]
         return ans
 
+
 # 1156ms
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
@@ -42,6 +43,28 @@ class Solution:
                 j += 1
         return ans
 
+
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        if len(nums) < 3: return []
+        nums.sort()
+        ans = []
+        for i in range(len(nums)):
+            if i != 0 and nums[i] == nums[i - 1]:
+                continue
+            if nums[i] > 0:
+                break
+            lo, hi = i + 1, len(nums) - 1
+            while lo < hi:
+                if nums[i] + nums[lo] + nums[hi] == 0:
+                    ans.append([nums[i], nums[lo], nums[hi]])
+                    while lo < hi and nums[lo] == ans[-1][1]:
+                        lo += 1
+                elif nums[i] + nums[lo] + nums[hi] > 0:
+                    hi -= 1
+                else:
+                    lo += 1
+        return ans
 
 
 if __name__ == '__main__':
