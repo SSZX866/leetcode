@@ -117,4 +117,28 @@ graph = [[1, 1, 1, 1, 0],
          [0, 1, 0, 1, 0],
          [1, 1, 2, 1, 1],
          [0, 2, 0, 0, 1]]
-print(Solution().minSai(graph))
+# print(Solution().minSai(graph))
+
+
+def func(nums):
+    res, Min, n = 0, nums[0], len(nums)
+    for i in range(1, n):
+        if nums[i] - nums[i - 1] > 0:
+            Max = nums[i]
+            res = max(res, abs(Max - Min))
+        else:
+            Min = nums[i]
+    return max(res,abs(Max-Min))
+
+
+def main():
+    s = input().split(',')
+    n = len(s)
+    nums = []
+    for c in s:
+        nums.append(int(c))
+    return func(nums)
+
+
+print(main())
+
