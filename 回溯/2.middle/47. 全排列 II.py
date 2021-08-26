@@ -69,6 +69,30 @@ class Solution:
         backtrack([], nums)
         return list(map(list, set(ans)))
 
+# indexs记录当前使用过的下标，dic记录已存在的组合
+class Solution:
+    def permuteUnique(self, nums: List[int]) -> List[List[int]]:
+        nums.sort()
+        n, ans, dic, indexs = len(nums), [], set(), set()
+
+        def backtrack(path, cur):
+            if len(path) == n and cur not in dic:
+                dic.add(cur)
+                ans.append(path[:])
+                return
+            for i in range(n):
+                if i in indexs:
+                    continue
+                indexs.add(i)
+                path.append(nums[i])
+                new = cur + str(nums[i])
+                backtrack(path, new)
+                path.pop()
+                indexs.remove(i)
+
+        backtrack([], '')
+        return ans
+
 
 if __name__ == '__main__':
     nums = [1, 1, 2]

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2021/3/31 15:28
 # @File    : 90. 子集 II.py
-from typing import List
+from leetcode import *
 
 
 class Solution:
@@ -55,7 +55,7 @@ class Solution:
                 path.pop()
 
         nums.sort()
-        backtrack([], 0, set(), '1' + '0' * 30)
+        backtrack([], 0, set(), '')
         return ans
 
 
