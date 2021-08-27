@@ -140,5 +140,18 @@ def main():
     return func(nums)
 
 
-print(main())
 
+def combine(n: int) -> List[List[int]]:
+    def backtrack(res, path, left, right):
+        if len(path) > n:
+            return
+        res.append(path[:])
+        for i in range(left, right):
+            path.append(i)
+            backtrack(res, path, i + 1, right)
+            path.pop()
+
+    res, path = [], []
+    backtrack(res, path, 1, n + 1)
+    return res
+print(combine(3))
