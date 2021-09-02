@@ -6,10 +6,10 @@
 # 到 1000 的是 O(n^2),到 100 的是 O(n^3),到 30 的是 O(n^4),到 20是 O(2^n)
 
 from typing import List
-import heapq, math, itertools, functools, bisect
-from collections import *
-from itertools import *
-from functools import *
+import heapq, math, itertools, functools, bisect, random
+# from collections import *
+# from itertools import *
+# from functools import *
 import copy
 import json
 import time

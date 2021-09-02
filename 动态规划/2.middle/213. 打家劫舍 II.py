@@ -49,6 +49,19 @@ class Solution:
         return ans
 
 
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        def func(ns):
+            pre = [[0] * 2 for _ in ns]
+            pre[0][1] = ns[0]
+            for i in range(1, len(ns)):
+                pre[i][0] = max(pre[i - 1][1], pre[i - 1][0])
+                pre[i][1] = pre[i - 1][0] + ns[i]
+            return max(pre[-1])
+
+        return max(func(nums[1:]), func(nums[:-1])) if len(nums) != 1 else nums[0]
+
+
 if __name__ == '__main__':
     nums = [2, 3, 2]
     nums = [1, 2, 3, 1]

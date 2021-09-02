@@ -15,3 +15,14 @@ class Solution:
         for i in range(n + 1):
             ans.append(ans[-1] + delta[i])
         return ans[2:]
+
+
+class Solution:
+    def corpFlightBookings(self, bookings: List[List[int]], n: int) -> List[int]:
+        ans = [0] * (n + 2)
+        for start, end, value in bookings:
+            ans[start] += value
+            ans[end + 1] -= value
+        for i in range(1, n + 1):
+            ans[i] += ans[i - 1]
+        return ans[1:-1]

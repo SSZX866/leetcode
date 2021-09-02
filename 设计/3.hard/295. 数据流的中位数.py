@@ -57,15 +57,19 @@ class MedianFinder:
 
 
 if __name__ == '__main__':
+    # def execute(target, f, p):
+    #     if f == "addNum":
+    #         target.addNum(p[0])
+    #         return None
+    #     elif f == "findMedian":
+    #         # print(obj._container)
+    #         return obj.findMedian()
+    #     else:
+    #         return None
+
     def execute(target, f, p):
-        if f == "addNum":
-            target.addNum(p[0])
-            return None
-        elif f == "findMedian":
-            # print(obj._container)
-            return obj.findMedian()
-        else:
-            return None
+        if f != "MedianFinder":
+            return eval("target." + f + '(' + str(p[0]) + ')') if p else eval("target." + f + '()')
 
 
     func = ["MedianFinder", "addNum", "findMedian", "addNum", "findMedian", "addNum", "findMedian", "addNum",
