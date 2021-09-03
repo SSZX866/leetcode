@@ -7,9 +7,9 @@
 
 from typing import List
 import heapq, math, itertools, functools, bisect, random
-# from collections import *
-# from itertools import *
-# from functools import *
+from collections import *
+from itertools import *
+from functools import *
 import copy
 import json
 import time
