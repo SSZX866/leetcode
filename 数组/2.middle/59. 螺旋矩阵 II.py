@@ -59,7 +59,6 @@ class Solution:
             if i == n - i - 1:
                 matrix[x][y] = cur
                 break
-            for _ in range(i, n - i - 1):
                 matrix[x][y] = cur
                 y += 1
                 cur += 1

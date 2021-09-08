@@ -4,6 +4,7 @@
 from leetcode import *
 
 
+# n^2logn
 class HeapNode:
     def __init__(self):
         self.val = []
@@ -23,8 +24,6 @@ class Solution:
                 tmp = HeapNode()
                 while cur.next.val:
                     profit, cap = heapq.heappop(cur.next.val)
-                    print(-profit, cap, w)
-                    # time.sleep(0.05)
                     if cap > w:
                         heapq.heappush(tmp.val, (profit, cap))
                     else:
@@ -36,12 +35,11 @@ class Solution:
                         cur.next = tmp
                         break
                 if not flag:
-                    # 如果未完成则当前节点一定已空
+                    # 如果该块未完成则当前节点一定已空
                     tmp.next = cur.next.next
                     cur.next = tmp
-                    cur = tmp
-                    if not cur: break
-            if not flag and not cur: break
+                    cur = cur.next
+            if not flag: break
         return w
 
 
