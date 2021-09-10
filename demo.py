@@ -117,6 +117,8 @@ graph = [[1, 1, 1, 1, 0],
          [0, 1, 0, 1, 0],
          [1, 1, 2, 1, 1],
          [0, 2, 0, 0, 1]]
+
+
 # print(Solution().minSai(graph))
 
 
@@ -128,7 +130,7 @@ def func(nums):
             res = max(res, abs(Max - Min))
         else:
             Min = nums[i]
-    return max(res,abs(Max-Min))
+    return max(res, abs(Max - Min))
 
 
 def main():
@@ -138,7 +140,6 @@ def main():
     for c in s:
         nums.append(int(c))
     return func(nums)
-
 
 
 def combine(n: int) -> List[List[int]]:
@@ -154,4 +155,30 @@ def combine(n: int) -> List[List[int]]:
     res, path = [], []
     backtrack(res, path, 1, n + 1)
     return res
+
+
 print(combine(3))
+
+n, m = (int(each) for each in input().split())
+targets = [-int(each) for each in input().split()]
+cars = [int(each) for each in input().split()]
+heapq.heapify(targets)
+ans = []
+for i in range(len(cars)):
+    tmp = []
+    while targets:
+        target = -heapq.heappop(targets)
+        if target > cars[i]:
+            tmp.append(target)
+        else:
+            ans.append(target)
+            while tmp:
+                heapq.heappush(targets, -tmp.pop())
+            break
+    if tmp:
+        while tmp:
+            heapq.heappush(targets, -tmp.pop())
+        ans.append(-1)
+for each in ans[:-1]:
+    print(each, end=' ')
+print(ans[-1])
