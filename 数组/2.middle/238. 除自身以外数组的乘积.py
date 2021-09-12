@@ -39,3 +39,18 @@ class Solution:
         for i in range(len(nums)):
             ans.append(pre[i] * suf[-i - 2])
         return ans
+
+
+# 优化空间o(1)
+class Solution:
+    def productExceptSelf(self, nums: List[int]) -> List[int]:
+        pre, suf = 1, 1
+        n = len(nums)
+        ans = [0] * n
+        for i in range(n):
+            ans[i] = pre
+            pre *= nums[i]
+        for i in range(n - 1, -1, -1):
+            ans[i] *= suf
+            suf *= nums[i]
+        return ans
