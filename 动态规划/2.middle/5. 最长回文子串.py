@@ -76,6 +76,53 @@ class Solution:
         return s[start:start + max_len]
 
 
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        n = len(s)
+        dp = [[False] * n for _ in s]
+        ans = s[0]
+        for i in range(n):
+            dp[i][i] = True
+        for L in range(2, n + 1):
+            # right - left + 1 = L
+            for left in range(n):
+                right = L + left - 1
+                if right >= n: break
+                if left + 1 == right:
+                    dp[left][right] = s[left] == s[right]
+                    if dp[left][right]:
+                        ans = max(ans, s[left:right + 1], key=len)
+                else:
+                    if dp[left + 1][right - 1]:
+                        dp[left][right] = s[left] == s[right]
+                        if dp[left][right]:
+                            ans = max(ans, s[left:right + 1], key=len)
+                    else:
+                        dp[left][right] = False
+        return ans
+
+
+# 中心扩散
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        n = len(s)
+
+        def center(left, right):
+            while left >= 0 and right < n and s[left] == s[right]:
+                left -= 1
+                right += 1
+            return left + 1, right - 1
+
+        start, length = 0, 1
+        for i in range(n):
+            for L in range(2):
+                left, right = center(i, i + L)
+                if right - left + 1 > length:
+                    length = right - left + 1
+                    start = left
+        return s[start:start + length]
+
+
 if __name__ == '__main__':
     s = "a"
     print(Solution().longestPalindrome(s))
