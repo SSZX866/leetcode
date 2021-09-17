@@ -24,6 +24,7 @@ class Solution:
                 block[i // 3][j // 3].add(board[i][j])
         return True
 
+
 # 优化空间
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
@@ -44,4 +45,22 @@ class Solution:
                 column[j][board[i][j]] = True
                 row[i][board[i][j]] = True
                 block[i // 3][j // 3][board[i][j]] = True
+        return True
+
+
+# 位运算
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        row, column, block = [0] * 9, [0] * 9, [[0] * 3 for _ in range(3)]
+        for i in range(9):
+            for j in range(9):
+                if board[i][j] == '.':
+                    continue
+                num = int(board[i][j])
+                if (row[j] << num) & 1 or (column[i] << num) & 1 or (
+                        block[i // 3][j // 3] << num) & 1:
+                    return False
+                row[j] |= 1 << num
+                column[i] |= 1 << num
+                block[i // 3][j // 3] |= 1 << num
         return True
