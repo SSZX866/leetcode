@@ -74,6 +74,38 @@ class Solution:
         return head
 
 
+class Solution:
+    def reorderList(self, head: ListNode) -> None:
+        if not head or not head.next: return
+        # 中间节点
+        fast, mid, pre = head, head, None
+        while fast and fast.next:
+            pre = mid
+            mid = mid.next
+            fast = fast.next.next
+        pre.next = None
+        # 尾部反转
+        cur = mid
+        pre2 = None
+        while cur:
+            tmp = cur.next
+            cur.next = pre2
+            pre2 = cur
+            cur = tmp
+        # 合并链表
+        cur1, cur2 = head, pre2
+        ppr1 = None
+        while cur1 and cur2:
+            ppr1 = cur2
+            tmp1 = cur1.next
+            cur1.next = cur2
+            tmp2 = cur2.next
+            cur2.next = tmp1
+            cur1 = tmp1
+            cur2 = tmp2
+        if cur2: ppr1.next = cur2
+
+
 if __name__ == '__main__':
     head = [1, 2, 3, 4, 5]
     printChainToValue(Solution().reorderList(buildChainWithValue(head)))
