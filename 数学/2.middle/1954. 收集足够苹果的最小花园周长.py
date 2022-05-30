@@ -6,13 +6,11 @@ from leetcode import *
 
 class Solution:
     def minimumPerimeter(self, neededApples: int) -> int:
-        tmp = 12
-        x = 2
-        while tmp < neededApples:
-            tmp = 2 * tmp + (x+1) * 4 + (x + 2) * 4 + x*8
-            x += 2
-            print(x,tmp)
-        return x * 4
+        n = 1
+        while 2 * n * (n + 1) * (2 * n + 1) < neededApples:
+            n += 1
+        return n * 8
+
 
 
 if __name__ == '__main__':

@@ -3,6 +3,20 @@
 # @File    : 1143. 最长公共子序列.py
 from leetcode import *
 
+
+class Solution:
+    def longestCommonSubsequence(self, text1: str, text2: str) -> int:
+        # dp[i][j] 表示 text1[:i - 1]和text2[:j - 1]最长公共子序列
+        dp = [[0] * (len(text2) + 1) for _ in range(len(text1) + 1)]
+        for i in range(1, len(text1) + 1):
+            for j in range(1, len(text2) + 1):
+                if text1[i - 1] == text2[j - 1]:
+                    dp[i][j] = dp[i - 1][j - 1] + 1
+                else:
+                    dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
+        return dp[-1][-1]
+
+
 # 单个数组或者字符串要用动态规划时，可以把动态规划 dp[i] 定义为 nums[0:i] 中想要求的结果；
 # 当两个数组或者字符串要用动态规划时，可以把动态规划定义成两维的 dp[i][j]，其含义是在 A[0:i] 与 B[0:j]之间匹配得到的想要的结果。
 
@@ -20,27 +34,8 @@ class Solution:
                     dp[i][j] = dp[i - 1][j - 1] + 1
                 else:
                     dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
-        # print(dp)
-        return dp[len(text1)][len(text2)]
-        # dp = [[0] * (len(text2)) for _ in text1]
-        # for i in range(len(text1)):
-        #     for j in range(len(text2)):
-        #         print(text1[i], text2[j])
-        #         if text1[i] == text2[j]:
-        #             if i - 1 < 0 or j - 1 < 0:
-        #                 dp[i][j] = 1
-        #             else:
-        #                 dp[i][j] = dp[i - 1][j - 1] + 1
-        #         else:
-        #             if i - 1 < 0:
-        #                 dp[i][j] = dp[i][j - 1]
-        #             elif j - 1 < 0:
-        #                 dp[i][j] = dp[i - 1][j]
-        #             else:
-        #                 dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
-        #         print(dp)
-        # print(dp)
         return dp[-1][-1]
+
 
 # 字典+二分 o(nlogn)
 class Solution:
@@ -59,6 +54,7 @@ class Solution:
             else:
                 result[insert_index] = index
         return len(result)
+
 
 if __name__ == '__main__':
     text1 = "abcde"

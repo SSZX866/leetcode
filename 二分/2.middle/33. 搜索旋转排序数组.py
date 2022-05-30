@@ -28,6 +28,27 @@ class Solution:
         return i if i < len(nums) and nums[i] == target else -1
 
 
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        lo, hi = 0, len(nums)
+        while lo < hi:
+            mid = lo + (hi - lo) // 2
+            if nums[mid] == target: return mid
+            #  前半部分有序
+            if nums[0] < nums[mid]:
+                if nums[0] <= target < nums[mid]:
+                    hi = mid
+                else:
+                    lo = mid + 1
+            #  后半部分有序
+            else:
+                if nums[mid] < target <= nums[-1]:
+                    lo = mid + 1
+                else:
+                    hi = mid
+        return lo if lo != len(nums) and nums[lo] == target else -1
+
+
 if __name__ == '__main__':
     nums = [2, 1]
     target = 1

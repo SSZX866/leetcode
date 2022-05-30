@@ -16,6 +16,16 @@ class Solution:
         return 0
 
 
+class Solution:
+    def chalkReplacer(self, chalk: List[int], k: int) -> int:
+        k %= sum(chalk)
+        for i in range(len(chalk)):
+            k -= chalk[i]
+            if k >= 0: continue
+            return i
+        return 0
+
+
 if __name__ == '__main__':
     chalk = [3, 4, 1, 2]
     k = 25

@@ -2,6 +2,7 @@
 # @Time    : 2021/3/16 9:58
 # @File    : 59. 螺旋矩阵 II.py
 from typing import List
+import math
 
 
 class Solution:
@@ -46,6 +47,33 @@ class Solution:
             else:
                 j -= 1
 
+        return matrix
+
+
+class Solution:
+    def generateMatrix(self, n: int) -> List[List[int]]:
+        matrix = [[0] * n for _ in range(n)]
+        cur = 1
+        for i in range(math.ceil(n / 2)):
+            x, y = i, i
+            if i == n - i - 1:
+                matrix[x][y] = cur
+                break
+                matrix[x][y] = cur
+                y += 1
+                cur += 1
+            for _ in range(i, n - i - 1):
+                matrix[x][y] = cur
+                x += 1
+                cur += 1
+            for _ in range(i, n - i - 1):
+                matrix[x][y] = cur
+                y -= 1
+                cur += 1
+            for _ in range(i, n - i - 1):
+                matrix[x][y] = cur
+                x -= 1
+                cur += 1
         return matrix
 
 
